@@ -2,6 +2,12 @@
  * Created by ttnd on 27/12/16.
  */
 import React from 'react'
+import Student from './Student';
+import HelloWorldComponent from './HelloWorldComponent';
+import Header from './Header';
+import Users from './Users';
+import BasicPage from './BasicPage';
+import UserPage from './UserPage';
 
 export default class App extends React.Component {
   constructor() {
@@ -26,12 +32,19 @@ export default class App extends React.Component {
         <p>Count is: {this.state.count}</p>
         <p>{fullName}</p>
         {
-          users.map((user) =>  {
-            return <p>{user}</p>
+          users.map((user, index) =>  {
+            return <p key={index}>{user}</p>
           })
         }
 
         <button onClick={this.increment.bind(this)}>Increment</button>
+
+        <Student></Student>
+        <HelloWorldComponent></HelloWorldComponent>
+        <Header></Header>
+        <Users></Users>
+        <BasicPage></BasicPage>
+        <UserPage></UserPage>
       </div>
     )
   }
