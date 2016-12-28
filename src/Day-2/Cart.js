@@ -21,7 +21,7 @@ export default class Cart extends React.Component {
         {
           this.state.items.map((item, index) => {
 
-            cartTotal += item.price;
+            cartTotal += item.price * item.qty;
 
             return <table key={index}>
               <Item item={item}/>
