@@ -43,37 +43,35 @@ export default class RegistrationForm extends React.Component {
   }
 
   submitForm() {
-    let currentState = this.state;
-    let errors = [];
     let re =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let hasError = false;
 
-    if(currentState.firstName.value === '') {
-      currentState.firstName.error = 'First name cannot be blank';
+    if(this.state.firstName.value === '') {
+      this.setState(Object.assign(this.state.firstName, {error: 'First name cannot be blank'}));
       hasError = true;
     }
-    if(currentState.lastName.value === '') {
-      currentState.lastName.error = 'Last name cannot be blank';
+    if(this.state.lastName.value === '') {
+      this.setState(Object.assign(this.state.lastName, {error: 'Last name cannot be blank'}));
       hasError = true;
     }
-    if((currentState.firstName.value !== currentState.lastName.value)) {
-      currentState.firstName.error = 'First name and last name should be equal';
-      currentState.lastName.error = 'First name and last name should be equal';
-      hasError = true;
-    }
-
-    if(currentState.password.value !== currentState.confirmPassword.value) {
-      currentState.password.error = 'Password and confirm password are not equal';
+    if((this.state.firstName.value !== this.state.lastName.value)) {
+      this.setState(Object.assign(this.state.firstName, {error: 'First name is not equal to last name'}));
+      this.setState(Object.assign(this.state.lastName, {error: 'Last name is not equal to first name'}));
       hasError = true;
     }
 
-    if(!re.test(currentState.email.value)) {
-      currentState.email.error = 'Invalid email';
+    if(this.state.password.value !== this.state.confirmPassword.value) {
+      this.setState(Object.assign(this.state.password, {error: 'Password is not equal to confirm password'}));
       hasError = true;
     }
 
-    if(currentState.contactNo.toString().length !== 10) {
-      currentState.contactNo.error = 'Phone no. should be of 10 digits';
+    if(!re.test(this.state.email.value)) {
+      this.setState(Object.assign(this.state.email, {error: 'Email is not valid'}));
+      hasError = true;
+    }
+
+    if(this.state.contactNo.toString().length !== 10) {
+      this.setState(Object.assign(this.state.contactNo, {error: 'Phone no. should be of 10 digits'}));
       hasError = true;
     }
 
