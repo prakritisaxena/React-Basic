@@ -1,10 +1,6 @@
 import React from 'react';
 
 export default class UserDetail extends React.Component {
-  constructor() {
-    super();
-    console.log(this.props && this.props.user && this.props.user.name);
-  }
 
   render() {
     return (

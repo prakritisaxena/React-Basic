@@ -8,6 +8,7 @@ import Header from './Header';
 import Users from './Users';
 import BasicPage from './BasicPage';
 import UserPage from './UserPage';
+import Clock from './Clock';
 
 export default class App extends React.Component {
   constructor() {
@@ -39,12 +40,13 @@ export default class App extends React.Component {
 
         <button onClick={this.increment.bind(this)}>Increment</button>
 
-        <Student></Student>
-        <HelloWorldComponent></HelloWorldComponent>
-        <Header></Header>
-        <Users></Users>
-        <BasicPage></BasicPage>
-        <UserPage></UserPage>
+        <Student/>
+        <HelloWorldComponent/>
+        <Header/>
+        <Users/>
+        <BasicPage/>
+        <UserPage/>
+        <Clock/>
       </div>
     )
   }

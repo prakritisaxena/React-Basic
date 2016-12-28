@@ -92,10 +92,10 @@ export default class Users extends React.Component {
     return (
       <div>
         {
-          this.getUsers().map(function (user, index) {
+          this.getUsers().map((user, index) => {
             return <div key={index}>
               User {index + 1}, _id: {user.id}
-              <UserDetail user={user}></UserDetail>
+              <UserDetail user={user}/>
             </div>
           })
         }
