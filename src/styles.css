@@ -1,0 +1,17 @@
+.my-navbar-list {
+  background: lightseagreen;
+  list-style: none;
+}
+
+.my-navbar-list-item {
+  padding: 20px;
+  display: inline-block;
+}
+
+.cartTable {
+  padding: 10px;
+}
+
+.cartTable td, .cartTable th {
+  padding: 10px;
+}

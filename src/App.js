@@ -3,6 +3,8 @@
  */
 import React from 'react';
 import {Link, browserHistory} from 'react-router';
+import './styles.css';
+import LoginForm from './LoginForm';
 
 export default class App extends React.Component {
 
@@ -14,17 +16,16 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>App</h1>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/aboutus">About</Link></li>
-          <li><Link to="/contacus">ContactUs</Link></li>
-          <li><Link to="/users">Users</Link></li>
+        <ul className="my-navbar-list">
+          <li className="my-navbar-list-item"><Link to="/">Home</Link></li>
+          <li className="my-navbar-list-item"><Link to="/aboutus">About</Link></li>
+          <li className="my-navbar-list-item"><Link to="/contactus">ContactUs</Link></li>
+          <li className="my-navbar-list-item"><Link to="/users">Users</Link></li>
         </ul>
 
         {this.props.children}
 
-        <button onClick={this.goToContact.bind(this)}>Go to Contact Us</button>
+        {/*<button onClick={this.goToContact.bind(this)}>Go to Contact Us</button>*/}
       </div>
     )
   }

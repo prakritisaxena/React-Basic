@@ -1,10 +1,12 @@
 import React from 'react';
+import Cart from './cart';
 
 export default class HomePage extends React.Component {
   render() {
     return (
       <div>
-        This is HomePage component
+        <h2>Welcome to Home Page!</h2>
+        <Cart></Cart>
       </div>
     );
   }
