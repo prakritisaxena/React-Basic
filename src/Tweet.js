@@ -15,7 +15,7 @@ export default class Tweet extends React.Component {
   }
 
   updateTweet(e) {
-    let noOfCharsLeft = this.state.noOfCharsLeft - e.target.value.length;
+    let noOfCharsLeft = 50 - e.target.value.length;
 
     this.setState({
       tweetText: e.target.value,
