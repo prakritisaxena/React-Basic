@@ -5,10 +5,9 @@ import React from 'react'
 import Tiles from './tiles';
 import DynamicTextChanger from './dynamicTextChanger';
 import {Grid, Row, Col} from 'react-bootstrap';
+import ScrollToTop from './ScrollToTop';
 
 require('./main.scss');
-
-
 
 export default class App extends React.Component {
   constructor() {
@@ -27,10 +26,10 @@ export default class App extends React.Component {
     return (
       <div>
         Working
-        <Tiles name="home" background="#5bb2fc"></Tiles>
-        <Tiles name="user-o" background="#58ebd3"></Tiles>
-        <Tiles name="picture-o" background="#5bb2fc"></Tiles>
-        <Tiles name="comment" background="#ff2387"></Tiles>
+        <Tiles name="home" background="#5bb2fc"/>
+        <Tiles name="user-o" background="#58ebd3"/>
+        <Tiles name="picture-o" background="#5bb2fc"/>
+        <Tiles name="comment" background="#ff2387"/>
         <div style={wrapper}>
           <DynamicTextChanger/>
         </div>
@@ -51,9 +50,9 @@ export default class App extends React.Component {
             </Row>
           </Grid>
         </div>
+        <ScrollToTop position={{top: 30,left: 600, right: 0, bottom: 0}} backgroundColor="blue" scrollOffset="10" />
       </div>
     )
   }
-
 }
 
