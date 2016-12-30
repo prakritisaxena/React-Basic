@@ -49,7 +49,8 @@ export default class ScrollToTop extends React.Component {
       lineHeight: "70px",
       textAlign: "center",
       marginRight: "10px",
-      fontSize: "40px"
+      fontSize: "40px",
+      position: "absolute"
     };
 
     return (

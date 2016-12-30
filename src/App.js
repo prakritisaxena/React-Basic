@@ -6,6 +6,7 @@ import Tiles from './tiles';
 import DynamicTextChanger from './dynamicTextChanger';
 import {Grid, Row, Col} from 'react-bootstrap';
 import ScrollToTop from './ScrollToTop';
+import Tweet from './Tweet';
 
 require('./main.scss');
 
@@ -51,6 +52,7 @@ export default class App extends React.Component {
           </Grid>
         </div>
         <ScrollToTop position={{top: 30,left: 600, right: 0, bottom: 0}} backgroundColor="blue" scrollOffset="10" />
+        <Tweet/>
       </div>
     )
   }
