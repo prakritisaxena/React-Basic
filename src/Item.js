@@ -11,7 +11,7 @@ export default class Item extends React.Component {
         <td>{item.price}</td>
         <td>
           <button onClick={() => this.props.increaseQuantity(item.id)}>Increase</button>
-          <button onClick={this.props.decreaseQuantity}>Decrease</button>
+          <button onClick={() => this.props.decreaseQuantity(item.id)}>Decrease</button>
         </td>
         <td>{item.price * item.qty}</td>
         <td><button onClick={()=>{this.props.removeItem(item.id)}}>Remove Item</button></td>
