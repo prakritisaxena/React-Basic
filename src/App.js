@@ -11,10 +11,6 @@ import Tweet from './Tweet';
 require('./main.scss');
 
 export default class App extends React.Component {
-  constructor() {
-    super()
-  }
-
   render() {
 
     const wrapper = {

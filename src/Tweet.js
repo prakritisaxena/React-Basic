@@ -20,7 +20,7 @@ export default class Tweet extends React.Component {
     this.setState({
       tweetText: e.target.value,
       noOfCharsLeft: noOfCharsLeft,
-      disabled: noOfCharsLeft < 0
+      disabled: noOfCharsLeft < 0 || !e.target.value.trim().length
     });
   }
 
