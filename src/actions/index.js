@@ -2,7 +2,10 @@ import {
   CHANGE_AGE,
   CHANGE_NAME,
   ADD_TWEET,
-  REMOVE_TWEET
+  REMOVE_TWEET,
+  FETCH_TWEET_FAILED,
+  FETCH_TWEET_STARTED,
+  FETCH_TWEET_SUCCESS
 } from '../constants';
 
 export function changeName(name) {
@@ -34,4 +37,41 @@ export function removeTweet() {
   }
 }
 
+
+export function fetchTweetsStarted() {
+  return {
+    type: FETCH_TWEET_SUCCESS
+  }
+}
+
+export function fetchTweetsSuccess(tweets) {
+  return {
+    type: FETCH_TWEET_SUCCESS,
+    tweets
+  }
+}
+
+export function fetchTweetsFailed() {
+  return {
+    type: FETCH_TWEET_FAILED
+  }
+}
+export function fetchTweets() {
+  return (dispatch) => {
+    console.log("Fetch tweets called");
+    dispatch(fetchTweetsStarted());
+    fetch('https://jsonplaceholder.typicode.com/comments')
+      .then((response) => {
+        return response.json();
+      })
+      .then(json => {
+        console.log(json, "Tweets found");
+        dispatch(fetchTweetsSuccess(json))
+      })
+      .catch((e) => {
+        console.log("Error fetching tweets", e);
+        dispatch(fetchTweetsFailed());
+      });
+  }
+}
 
