@@ -5,7 +5,8 @@ import {
   REMOVE_TWEET,
   FETCH_TWEET_FAILED,
   FETCH_TWEET_STARTED,
-  FETCH_TWEET_SUCCESS
+  FETCH_TWEET_SUCCESS,
+  UPDATE_TIME
 } from '../constants';
 
 export function changeName(name) {
@@ -75,3 +76,9 @@ export function fetchTweets() {
   }
 }
 
+export function updateTime() {
+  return {
+    type: UPDATE_TIME,
+    time: new Date()
+  }
+}

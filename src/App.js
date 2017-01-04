@@ -3,9 +3,17 @@
  */
 import React from 'react'
 import {connect} from 'react-redux';
-import {changeName, changeAge, addTweet, removeTweet, fetchTweets} from './actions';
+import {
+  changeName,
+  changeAge,
+  addTweet,
+  removeTweet,
+  fetchTweets,
+  updateTime
+} from './actions';
 import TweetsList from './components/TweetsList';
 import AddTweet from './components/AddTweet';
+import DigitalClock from './components/DigitalClock';
 
 class App extends React.Component {
   constructor() {
@@ -18,6 +26,7 @@ class App extends React.Component {
     this.onChangeNameClick = this.onChangeNameClick.bind(this);
     this.onAddTweet = this.onAddTweet.bind(this);
     this.fetchTweets = this.fetchTweets.bind(this);
+    this.updateTime = this.updateTime.bind(this);
   }
 
   increment() {
@@ -25,14 +34,16 @@ class App extends React.Component {
   }
 
   render() {
+
+    console.log("Inside App render method: ", this.props);
     return (<div>
       Working Awesomely, {this.props.user.name}
       <button onClick={this.onChangeNameClick}>Change Name to Manoj</button>
-      <TweetsList tweets={this.props.tweets.tweets} />
+      <TweetsList tweets={this.props.tweets.tweets}/>
       <AddTweet onAdd={this.onAddTweet}/>
       {this.props.tweets.loading ? <h1>Fetching more tweets....</h1> : <h1>All tweets loaded</h1> }
       <button onClick={this.fetchTweets}>Fetch more tweets</button>
-
+      <DigitalClock time={this.props.clock.time} update={this.updateTime}/>
     </div>)
   }
 
@@ -47,6 +58,10 @@ class App extends React.Component {
 
   fetchTweets() {
     this.props.dispatch(fetchTweets());
+  }
+
+  updateTime() {
+    this.props.dispatch(updateTime());
   }
 
 }
