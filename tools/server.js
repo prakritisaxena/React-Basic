@@ -8,7 +8,7 @@ import webpack from 'webpack'
 import config from '../webpack.config'
 
 let app = express()
-let compile = webpack(config)
+let compiler = webpack(config)
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
