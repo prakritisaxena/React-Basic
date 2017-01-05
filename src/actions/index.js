@@ -6,7 +6,11 @@ import {
   FETCH_TWEET_FAILED,
   FETCH_TWEET_STARTED,
   FETCH_TWEET_SUCCESS,
-  UPDATE_TIME
+  UPDATE_TIME,
+  ADD_ITEM,
+  REMOVE_ITEM,
+  INCREASE_QUANTITY,
+  DECREASE_QUANTITY
 } from '../constants';
 
 export function changeName(name) {
@@ -80,5 +84,30 @@ export function updateTime() {
   return {
     type: UPDATE_TIME,
     time: new Date()
-  }
+  };
+}
+
+
+export function increaseQuantity() {
+  return {
+    type: INCREASE_QUANTITY
+  };
+}
+
+export function decreaseQuantity() {
+  return {
+    type: DECREASE_QUANTITY
+  };
+}
+
+export function addItem() {
+  return {
+    type: ADD_ITEM
+  };
+}
+
+export function removeItem() {
+  return {
+    type: REMOVE_ITEM
+  };
 }

@@ -14,6 +14,7 @@ import {
 import TweetsList from './components/TweetsList';
 import AddTweet from './components/AddTweet';
 import DigitalClock from './components/DigitalClock';
+import Cart from './components/Cart';
 
 class App extends React.Component {
   constructor() {
@@ -44,6 +45,7 @@ class App extends React.Component {
       {this.props.tweets.loading ? <h1>Fetching more tweets....</h1> : <h1>All tweets loaded</h1> }
       <button onClick={this.fetchTweets}>Fetch more tweets</button>
       <DigitalClock time={this.props.clock.time} update={this.updateTime}/>
+      <Cart items={this.props.cart.items}/>
     </div>)
   }
 
