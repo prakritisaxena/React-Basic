@@ -1,7 +1,11 @@
 import {combineReducers} from 'redux';
 import {
   FETCH_ALL_BOOKS,
+  FETCH_BOOKS_SUCCESS,
+  FETCH_BOOKS_FAILED,
   ADD_BOOK,
+  ADD_BOOK_SUCCESS,
+  ADD_BOOK_FAILED,
   REMOVE_BOOK,
   SEARCH_BOOK,
   VIEW_BOOK_DETAILS,
@@ -10,17 +14,18 @@ import {
 
 
 let initialState = {
-  books: []
+  books: [],
+  newBook: {}
 };
 
 const booksReducer = function (state = initialState, action) {
   switch(action.type) {
-    case FETCH_ALL_BOOKS:
+    case FETCH_BOOKS_SUCCESS:
       return {...state, books: action.data};
-    // case REMOVE_BOOK:
-    // case SEARCH_BOOK:
-    // case VIEW_BOOK_DETAILS:
-    // case EDIT_BOOK_DETAILS:
+    case ADD_BOOK_SUCCESS:
+      let newBooksList = [].concat(state.books);
+      newBooksList.push(action.newBook);
+      return {...state, books: newBooksList};
   }
   return state;
 };

@@ -3,11 +3,17 @@ import React from 'react';
 export default class BookSummary extends React.Component {
 
   constructor() {
-    this.viewDetails = this.viewDetails.bind(this);
+    super();
+    this.viewBookDetails = this.viewBookDetails.bind(this);
+    this.deleteBook = this.deleteBook.bind(this);
   }
 
-  viewDetails() {
-    this.props.viewDetails();
+  viewBookDetails(book) {
+    this.props.viewBookDetails(book);
+  }
+
+  deleteBook(book) {
+    this.props.deleteBook(book);
   }
 
   render() {
@@ -19,7 +25,8 @@ export default class BookSummary extends React.Component {
       <div>
         <h2>{book.title}</h2>
         <p>{book.author}</p>
-        <button onClick={this.viewDetails}>View Details</button>
+        <button onClick={() => {this.viewBookDetails(book);}}>View Details</button>
+        <button onClick={() => {this.deleteBook(book);}}>Delete book</button>
       </div>
     )
   }

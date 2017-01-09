@@ -3,6 +3,8 @@ import {
   FETCH_BOOKS_SUCCESS,
   FETCH_BOOKS_FAILED,
   ADD_BOOK,
+  ADD_BOOK_SUCCESS,
+  ADD_BOOK_FAILED,
   REMOVE_BOOK,
   SEARCH_BOOK,
   VIEW_BOOK_DETAILS,
@@ -45,14 +47,16 @@ export function fetchAllBooks() {
   return (dispatch) => {
     fetch(API_URL)
       .then((response) => {
-        console.log("First then block: ", response.json());
-        return response.json();
+        let json = response.json();
+        console.log("First then block: ", json);
+        return json;
       })
-      .then(json => {
+      .then((json) => {
         console.log("Second then block ", json);
         dispatch(fetchBooksSuccess(json));
       })
       .catch((e) => {
+        console.log('Fetch books failed', e);
         dispatch(fetchBooksFailed(e));
       });
   }
@@ -72,10 +76,59 @@ export function fetchBooksFailed(error) {
   }
 }
 
-export function createNewBook() {
+
+export function addNewBook(book) {
   return (dispatch) => {
     fetch(API_URL, {
-      body: {id: 1, title: 'Alice in Wonderland', author: 'Lewis Caroll', noOfPage: 245}
+      method: "POST",
+      body: JSON.stringify(book),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin"
     })
+      .then((response) => {
+        console.log('Inside then block of add book response: ', response);
+        // return response.json();
+      })
+      .then(json => {
+        console.log('Add book success');
+        dispatch(addBookSuccess(json));
+      })
+      .catch(e => {
+        console.log('Add book failed');
+        dispatch(addBookFailed(e));
+      })
   };
+}
+
+function addBookSuccess(newBook) {
+
+  console.log("Inside add book success action: ", newBook);
+  return {
+    type: ADD_BOOK_SUCCESS,
+    newBook
+  };
+}
+
+function addBookFailed(error) {
+  return {
+    type: ADD_BOOK_FAILED,
+    error
+  };
+}
+
+export function updateBookDetails() {
+  return ((dispatch) => {
+    fetch(API_URL, {
+      method: 'PUT',
+
+    })
+  });
+}
+
+export function deleteBook(book) {
+  return (dispatch => {
+    fetch(API_URL)
+  });
 }
