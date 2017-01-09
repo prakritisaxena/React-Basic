@@ -2,8 +2,10 @@ import React from 'react';
 
 export default class ViewBook extends React.Component {
   render() {
+    debugger;
+    let {book} = this.params;
 
-    let {book} = this.props;
+    console.log('inside viewbook', this);
     return (
       <div>
         <h2>{book.title}</h2>

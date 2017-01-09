@@ -42,6 +42,7 @@ export class BooksList extends React.Component {
   }
 
   viewBookDetails(book) {
+    browserHistory.push(book.id);
     this.props.viewBookDetails(book);
   }
 
@@ -66,7 +67,6 @@ export class BooksList extends React.Component {
           <input type="text" placeholder="Enter No. of Pages" onChange={this.updateValue} name="noOfPages"/>
           <button onClick={this.addBook}>Add Book</button>
         </div>
-        {console.log('Inside BooksList template: ', this.props.booksData.books)}
         {
           this.props.booksData.books && this.props.booksData.books.length ?
             this.props.booksData.books.map((book, index) => {

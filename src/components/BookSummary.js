@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 export default class BookSummary extends React.Component {
 
@@ -25,7 +26,9 @@ export default class BookSummary extends React.Component {
       <div>
         <h2>{book.title}</h2>
         <p>{book.author}</p>
-        <button onClick={() => {this.viewBookDetails(book);}}>View Details</button>
+        <Link to={'bookdetails/' + book.id} params={{book:book}}>
+          View Details
+        </Link>
         <button onClick={() => {this.deleteBook(book);}}>Delete book</button>
       </div>
     )
