@@ -10,6 +10,8 @@ import {
   DELETE_BOOK_FAILED,
   SEARCH_BOOK,
   VIEW_BOOK_DETAILS,
+  VIEW_BOOK_DETAILS_SUCCESS,
+  VIEW_BOOK_DETAILS_FAILED,
   EDIT_BOOK_DETAILS,
   API_URL
 } from '../constants';
@@ -27,11 +29,39 @@ export function searchBook() {
     type: SEARCH_BOOK
   }
 }
-export function viewBookDetails() {
+export function viewBookDetails(id) {
+  console.log('View books action called', id);
+  return ((dispatch) => {
+    fetch(API_URL + "/" + id)
+      .then(response => {
+        console.log('View books response action: ', response.json());
+        return response.json();
+      })
+      .then((json) => {
+      console.log('View books success action: ', json);
+        dispatch(viewBookDetailsSuccess(json));
+      })
+      .catch(e => {
+        console.log('View books failed action: ', e);
+        dispatch(viewBookDetailsFailed(e));
+      })
+  });
+}
+
+export function viewBookDetailsSuccess(book) {
   return {
-    type: VIEW_BOOK_DETAILS
+    type: VIEW_BOOK_DETAILS_SUCCESS,
+    book
   }
 }
+
+export function viewBookDetailsFailed(error) {
+  return {
+    type: VIEW_BOOK_DETAILS_FAILED,
+    error
+  }
+}
+
 export function editBookDetails() {
   return {
     type: EDIT_BOOK_DETAILS

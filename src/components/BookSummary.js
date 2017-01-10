@@ -23,14 +23,21 @@ export default class BookSummary extends React.Component {
     const {book} = this.props;
 
     return (
-      <div>
-        <h2>{book.title}</h2>
-        <p>{book.author}</p>
-        <Link to={'bookdetails/' + book.id} params={{book:book}}>
-          View Details
-        </Link>
-        <button onClick={() => {this.deleteBook(book);}}>Delete book</button>
-      </div>
+      <tr>
+        <td>{book.title}</td>
+        <td>{book.author}</td>
+        <td>
+          <Link to={'/' + book.id}>
+            View Details
+          </Link>
+        </td>
+        <td>
+          <button onClick={() => {
+            this.deleteBook(book);
+          }}>Delete book
+          </button>
+        </td>
+      </tr>
     )
   }
 }

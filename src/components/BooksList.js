@@ -14,7 +14,6 @@ export class BooksList extends React.Component {
   constructor(props) {
     super(props);
     this.addBook = this.addBook.bind(this);
-    this.viewBookDetails = this.viewBookDetails.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
     this.updateValue = this.updateValue.bind(this);
 
@@ -41,11 +40,6 @@ export class BooksList extends React.Component {
     });
   }
 
-  viewBookDetails(book) {
-    browserHistory.push(book.id);
-    this.props.viewBookDetails(book);
-  }
-
   deleteBook(book) {
     this.props.deleteBook(book);
   }
@@ -60,7 +54,7 @@ export class BooksList extends React.Component {
 
     return (
       <div>
-        <div>
+        <div className="center-align addBook">
           <input type="text" placeholder="Enter title" onChange={this.updateValue} name="title"/>
           <input type="text" placeholder="Enter Author" onChange={this.updateValue} name="author"/>
           <input type="text" placeholder="Enter Description" onChange={this.updateValue} name="description"/>
@@ -69,14 +63,34 @@ export class BooksList extends React.Component {
         </div>
         {
           this.props.booksData.books && this.props.booksData.books.length ?
-            this.props.booksData.books.map((book, index) => {
-              return <BookSummary book={book} key={index} deleteBook={this.deleteBook}
-                                  viewBookDetails={this.viewBookDetails}/>
-            }) :
+
 
             <div>
-              <p>Welcome to TTN Library</p>
-              <p>Currently there are no books</p>
+              <table className="table">
+                <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                  this.props.booksData.books.map((book, index) => {
+                    return <BookSummary book={book} key={index} deleteBook={this.deleteBook}
+                                        viewBookDetails={this.viewBookDetails}/>
+                  })
+                }
+                </tbody>
+              </table>
+            </div>
+
+            :
+
+            <div className="center-align">
+              <h1>Welcome to TTN Library</h1>
+              <h2>Currently there are no books</h2>
             </div>
         }
       </div>

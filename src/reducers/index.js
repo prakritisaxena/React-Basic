@@ -10,13 +10,16 @@ import {
   DELETE_BOOK_SUCCESS,
   SEARCH_BOOK,
   VIEW_BOOK_DETAILS,
-  EDIT_BOOK_DETAILS
+  EDIT_BOOK_DETAILS,
+  VIEW_BOOK_DETAILS_SUCCESS,
+  VIEW_BOOK_DETAILS_FAILED
 } from '../constants';
 
 
 let initialState = {
   books: [],
-  newBook: {}
+  newBook: {},
+  currentBook: {}
 };
 
 const booksReducer = function (state = initialState, action) {
@@ -36,6 +39,8 @@ const booksReducer = function (state = initialState, action) {
         }
       }
       return {...state, books: newList};
+    case VIEW_BOOK_DETAILS_SUCCESS:
+      return {...state, currentBook: action.book};
   }
   return state;
 };
