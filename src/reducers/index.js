@@ -10,7 +10,7 @@ import {
   DELETE_BOOK_SUCCESS,
   SEARCH_BOOK,
   VIEW_BOOK_DETAILS,
-  EDIT_BOOK_DETAILS,
+  UPDATE_BOOK_DETAILS,
   VIEW_BOOK_DETAILS_SUCCESS,
   VIEW_BOOK_DETAILS_FAILED
 } from '../constants';
@@ -39,8 +39,18 @@ const booksReducer = function (state = initialState, action) {
         }
       }
       return {...state, books: newList};
-    case VIEW_BOOK_DETAILS_SUCCESS:
+    case VIEW_BOOK_DETAILS_SUCCESS: {
       return {...state, currentBook: action.book};
+    }
+    case UPDATE_BOOK_DETAILS_SUCCESS:
+      let list = [].concat(state.books)
+      for (let i = 0; i < list.length; i++) {
+        if (list[i].id === action.book.id) {
+          list[i] = action.book;
+          break;
+        }
+      }
+      return {...state, books: list};
   }
   return state;
 };

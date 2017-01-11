@@ -12,7 +12,9 @@ import {
   VIEW_BOOK_DETAILS,
   VIEW_BOOK_DETAILS_SUCCESS,
   VIEW_BOOK_DETAILS_FAILED,
-  EDIT_BOOK_DETAILS,
+  UPDATE_BOOK_DETAILS,
+  UPDATE_BOOK_DETAILS_SUCCESS,
+  UPDATE_BOOK_DETAILS_FAILED,
   API_URL
 } from '../constants';
 
@@ -34,15 +36,12 @@ export function viewBookDetails(id) {
   return ((dispatch) => {
     fetch(API_URL + "/" + id)
       .then(response => {
-        console.log('View books response action: ', response.json());
         return response.json();
       })
       .then((json) => {
-      console.log('View books success action: ', json);
         dispatch(viewBookDetailsSuccess(json));
       })
       .catch(e => {
-        console.log('View books failed action: ', e);
         dispatch(viewBookDetailsFailed(e));
       })
   });
@@ -62,22 +61,11 @@ export function viewBookDetailsFailed(error) {
   }
 }
 
-export function editBookDetails() {
-  return {
-    type: EDIT_BOOK_DETAILS
-  }
-}
-
 export function fetchAllBooks() {
-
-  console.log('Fetch All Books called');
 
   return (dispatch) => {
     fetch(API_URL)
-      .then((response) => {
-        let json = response.json();
-        return json;
-      })
+      .then(response => response.json())
       .then((json) => {
         dispatch(fetchBooksSuccess(json));
       })
@@ -112,9 +100,7 @@ export function addNewBook(book) {
       },
       credentials: "same-origin"
     })
-      .then((response) => {
-        return response.json();
-      })
+      .then(response => response.json())
       .then(json => {
         dispatch(addBookSuccess(json));
       })
@@ -139,13 +125,35 @@ function addBookFailed(error) {
   };
 }
 
-export function updateBookDetails() {
+export function updateBookDetails(book) {
   return ((dispatch) => {
     fetch(API_URL, {
       method: 'PUT',
-
+      body: book
     })
+      .then(response => response.json())
+      .then(json => {
+        dispatch(updateBookDetailsSuccess(json));
+      })
+      .catch(e => {
+        dispatch(updateBookDetailsFailed(e))
+      });
   });
+}
+
+export function updateBookDetailsSuccess(book) {
+  return {
+    type: UPDATE_BOOK_DETAILS_SUCCESS,
+    book
+  };
+}
+
+
+export function updateBookDetailsFailed(e) {
+  return {
+    type: UPDATE_BOOK_DETAILS_FAILED,
+    e
+  };
 }
 
 export function deleteBook(book) {
@@ -153,9 +161,6 @@ export function deleteBook(book) {
     fetch(API_URL + "/" + book.id, {
       "method": "DELETE"
     })
-      .then(response => {
-        return response;
-      })
       .then(() => {
         dispatch(deleteBookSuccess(book));
       })
